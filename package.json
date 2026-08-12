@@ -1,0 +1,15 @@
+{
+  "name": "ebook-creator-root",
+  "version": "1.0.0",
+  "description": "Root package to run frontend and backend concurrently",
+  "scripts": {
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm start",
+    "client": "cd frontend/eBookCreator && npm run dev",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend/eBookCreator && npm install"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

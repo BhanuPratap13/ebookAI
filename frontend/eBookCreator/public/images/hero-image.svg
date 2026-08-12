@@ -1,0 +1,67 @@
+<svg width="1160" height="800" viewBox="0 0 1160 800" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>eBookAI writing workspace preview</title>
+  <desc>A clean browser-style editor panel showing an AI-generated chapter mid-write, with a violet header bar and a cursor indicator noting that AI is writing the current section.</desc>
+  <defs>
+    <linearGradient id="orbA" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A78BFA" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#7C3AED" stop-opacity="0.12"/>
+    </linearGradient>
+    <linearGradient id="orbB" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C4B5FD" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#9333EA" stop-opacity="0.08"/>
+    </linearGradient>
+    <linearGradient id="panelHeader" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#9333EA"/>
+    </linearGradient>
+    <linearGradient id="barGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#DDD6FE"/>
+      <stop offset="100%" stop-color="#EDE9FE"/>
+    </linearGradient>
+    <filter id="softShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#5B21B6" flood-opacity="0.2"/>
+    </filter>
+    <filter id="blurBig" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+  </defs>
+
+  <circle cx="180" cy="150" r="220" fill="url(#orbA)" filter="url(#blurBig)"/>
+  <circle cx="980" cy="650" r="240" fill="url(#orbB)" filter="url(#blurBig)"/>
+
+  <g opacity="0.45">
+    <circle cx="90" cy="600" r="4" fill="#A78BFA"/>
+    <circle cx="130" cy="660" r="3" fill="#C4B5FD"/>
+    <circle cx="1080" cy="220" r="4" fill="#C4B5FD"/>
+    <circle cx="1120" cy="170" r="3" fill="#A78BFA"/>
+  </g>
+
+  <g filter="url(#softShadow)">
+    <rect x="120" y="120" width="920" height="600" rx="26" fill="#FFFFFF"/>
+    <rect x="120" y="120" width="920" height="66" rx="26" fill="url(#panelHeader)"/>
+    <rect x="120" y="162" width="920" height="24" fill="url(#panelHeader)"/>
+
+    <circle cx="158" cy="153" r="7" fill="#FFFFFF" opacity="0.85"/>
+    <circle cx="184" cy="153" r="7" fill="#FFFFFF" opacity="0.6"/>
+    <circle cx="210" cy="153" r="7" fill="#FFFFFF" opacity="0.4"/>
+
+    <text x="1000" y="159" text-anchor="end" font-family="Arial, sans-serif" font-size="17" fill="#FFFFFF" opacity="0.9">Chapter 4 &#183; Draft</text>
+
+    <rect x="168" y="234" width="280" height="26" rx="7" fill="#1F1147"/>
+
+    <rect x="168" y="298" width="700" height="14" rx="7" fill="url(#barGrad)"/>
+    <rect x="168" y="330" width="660" height="14" rx="7" fill="url(#barGrad)"/>
+    <rect x="168" y="362" width="600" height="14" rx="7" fill="url(#barGrad)"/>
+    <rect x="168" y="394" width="680" height="14" rx="7" fill="#EDE9FE" opacity="0.7"/>
+
+    <rect x="168" y="446" width="190" height="24" rx="7" fill="#1F1147" opacity="0.85"/>
+    <rect x="168" y="500" width="700" height="14" rx="7" fill="url(#barGrad)"/>
+    <rect x="168" y="532" width="640" height="14" rx="7" fill="url(#barGrad)"/>
+    <rect x="168" y="564" width="700" height="14" rx="7" fill="#EDE9FE" opacity="0.7"/>
+    <rect x="168" y="596" width="440" height="14" rx="7" fill="url(#barGrad)"/>
+
+    <rect x="168" y="650" width="700" height="2" fill="#EDE9FE"/>
+    <circle cx="184" cy="674" r="7" fill="#7C3AED"/>
+    <text x="204" y="680" font-family="Arial, sans-serif" font-size="16" fill="#6D28D9">AI is writing this section</text>
+  </g>
+</svg>
