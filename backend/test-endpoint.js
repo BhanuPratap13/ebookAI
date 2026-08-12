@@ -38,7 +38,6 @@ async function test() {
     });
     
     const aiData = await aiRes.json();
-    console.log("AI Route success!");
     console.log(JSON.stringify(aiData, null, 2));
 
   } catch (e) {
