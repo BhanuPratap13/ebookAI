@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import axiosInstance from "../utils/axiosinstance";
-import { API_PATHS } from "../utils/apiPath";
+import { API_PATHS, API_BASE_URL } from "../utils/apiPath";
 import { countWords, getReadingTime, formatDate, getTotalWordCount } from "../utils/helper";
 import toast from "react-hot-toast";
 
@@ -137,7 +137,7 @@ const ViewBookPage = () => {
           <div className="p-5 border-b border-white/8">
             {book.coverImage ? (
               <img
-                src={`http://localhost:8000${book.coverImage}`}
+                src={book.coverImage.startsWith("http") ? book.coverImage : `${API_BASE_URL}${book.coverImage}`}
                 alt={book.title}
                 className="w-full h-36 object-cover rounded-xl mb-3"
               />

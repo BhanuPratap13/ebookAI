@@ -20,6 +20,7 @@ export const API_PATHS = {
   AI: {
     GENERATE_OUTLINE: `${BASE_URL}/api/ai/generate-outline`,
     GENERATE_CHAPTER: `${BASE_URL}/api/ai/generate-chapter-content`,
+    GENERATE_COVER: `${BASE_URL}/api/ai/generate-cover`,
   },
   EXPORT: {
     PDF: (id) => `${BASE_URL}/api/export/${id}/pdf`,

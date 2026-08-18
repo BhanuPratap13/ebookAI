@@ -65,24 +65,32 @@ const DashboardPage = () => {
     0
   );
 
+  const stats = [
+    { label: "Total eBooks", value: books.length, icon: "📚", color: "from-[#2C5F7C]/10 to-[#2C5F7C]/5" },
+    { label: "Drafts", value: books.filter((b) => b.status === "draft").length, icon: "📝", color: "from-amber-50 to-amber-50/50" },
+    { label: "Published", value: books.filter((b) => b.status === "published").length, icon: "✅", color: "from-emerald-50 to-emerald-50/50" },
+    { label: "Total Words", value: totalWords.toLocaleString(), icon: "💬", color: "from-[#F0876B]/10 to-[#F0876B]/5" },
+  ];
+
   return (
-    <div className="min-h-screen bg-[#0f0f1a]">
+    <div className="min-h-screen bg-[#FAFAF8]">
       <Navbar />
       <main className="max-w-7xl mx-auto px-6 py-8">
+
         {/* Page header */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-white mb-1">
+            <h1 className="text-3xl font-bold text-[#26333B] mb-1">
               My eBooks
             </h1>
-            <p className="text-gray-400">
+            <p className="text-[#8A9BA4]">
               {books.length} {books.length === 1 ? "ebook" : "ebooks"} · {totalWords.toLocaleString()} words written
             </p>
           </div>
           <button
             id="create-ebook-btn"
             onClick={() => setShowCreateModal(true)}
-            className="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-orange-500 to-pink-600 text-white font-semibold rounded-xl hover:from-orange-400 hover:to-pink-500 transition-all shadow-lg shadow-orange-500/25 hover:-translate-y-0.5 whitespace-nowrap"
+            className="inline-flex items-center gap-2 px-5 py-3 bg-gradient-to-r from-[#F0876B] to-[#e06d50] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#F0876B]/30 transition-all duration-200 hover:-translate-y-0.5 whitespace-nowrap shadow-md shadow-[#F0876B]/20"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
@@ -93,16 +101,14 @@ const DashboardPage = () => {
 
         {/* Stats row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          {[
-            { label: "Total eBooks", value: books.length, icon: "📚" },
-            { label: "Drafts", value: books.filter((b) => b.status === "draft").length, icon: "📝" },
-            { label: "Published", value: books.filter((b) => b.status === "published").length, icon: "✅" },
-            { label: "Total Words", value: totalWords.toLocaleString(), icon: "💬" },
-          ].map((stat) => (
-            <div key={stat.label} className="p-4 bg-white/3 border border-white/8 rounded-2xl">
+          {stats.map((stat) => (
+            <div
+              key={stat.label}
+              className={`p-4 bg-gradient-to-br ${stat.color} border border-[#E8E6E0] rounded-2xl card-glow group cursor-default`}
+            >
               <div className="text-2xl mb-1">{stat.icon}</div>
-              <div className="text-xl font-bold text-white">{stat.value}</div>
-              <div className="text-gray-500 text-xs">{stat.label}</div>
+              <div className="text-xl font-bold text-[#26333B]">{stat.value}</div>
+              <div className="text-[#8A9BA4] text-xs font-medium">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -110,7 +116,12 @@ const DashboardPage = () => {
         {/* Search & Filter */}
         <div className="flex flex-col sm:flex-row gap-3 mb-6">
           <div className="relative flex-1">
-            <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg
+              className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#8A9BA4]"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
             <input
@@ -119,7 +130,7 @@ const DashboardPage = () => {
               placeholder="Search ebooks..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-orange-500/50 transition-all text-sm"
+              className="w-full pl-10 pr-4 py-2.5 bg-white border-2 border-[#E8E6E0] rounded-xl text-[#26333B] placeholder-[#8A9BA4] focus:outline-none focus:border-[#2C5F7C] transition-all text-sm shadow-sm"
             />
           </div>
           <div className="flex gap-2">
@@ -127,10 +138,10 @@ const DashboardPage = () => {
               <button
                 key={f}
                 onClick={() => setFilterStatus(f)}
-                className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all capitalize ${
+                className={`px-4 py-2.5 rounded-xl text-sm font-medium transition-all capitalize border-2 ${
                   filterStatus === f
-                    ? "bg-orange-500 text-white"
-                    : "bg-white/5 text-gray-400 hover:bg-white/8 hover:text-white border border-white/8"
+                    ? "bg-[#2C5F7C] text-white border-[#2C5F7C] shadow-md shadow-[#2C5F7C]/20"
+                    : "bg-white text-[#26333B]/60 border-[#E8E6E0] hover:border-[#2C5F7C]/40 hover:text-[#2C5F7C]"
                 }`}
               >
                 {f}
@@ -141,16 +152,17 @@ const DashboardPage = () => {
 
         {/* Books grid */}
         {loading ? (
-          <div className="flex items-center justify-center py-20">
-            <div className="w-10 h-10 border-3 border-orange-500 border-t-transparent rounded-full animate-spin" />
+          <div className="flex flex-col items-center justify-center py-20 gap-4">
+            <div className="w-10 h-10 border-3 border-[#F0876B] border-t-transparent rounded-full animate-spin" />
+            <p className="text-[#8A9BA4] text-sm">Loading your ebooks...</p>
           </div>
         ) : filteredBooks.length === 0 ? (
           <div className="text-center py-20">
             <div className="text-6xl mb-4">📚</div>
-            <h3 className="text-white text-xl font-semibold mb-2">
+            <h3 className="text-[#26333B] text-xl font-semibold mb-2">
               {books.length === 0 ? "No ebooks yet" : "No results found"}
             </h3>
-            <p className="text-gray-400 text-sm mb-6">
+            <p className="text-[#8A9BA4] text-sm mb-6">
               {books.length === 0
                 ? "Create your first ebook with AI assistance"
                 : "Try a different search or filter"}
@@ -158,7 +170,7 @@ const DashboardPage = () => {
             {books.length === 0 && (
               <button
                 onClick={() => setShowCreateModal(true)}
-                className="px-6 py-3 bg-gradient-to-r from-orange-500 to-pink-600 text-white font-medium rounded-xl hover:from-orange-400 hover:to-pink-500 transition-all"
+                className="px-6 py-3 bg-gradient-to-r from-[#F0876B] to-[#e06d50] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#F0876B]/30 transition-all shadow-md shadow-[#F0876B]/20"
               >
                 Create Your First eBook
               </button>
@@ -197,4 +209,3 @@ const DashboardPage = () => {
 };
 
 export default DashboardPage;
-
