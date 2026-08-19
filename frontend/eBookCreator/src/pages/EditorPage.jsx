@@ -176,11 +176,8 @@ const EditorPage = () => {
     if (!book) return;
     setGeneratingCover(true);
     try {
-      // Call the AI cover generation endpoint
       const res = await axiosInstance.post(
-        API_PATHS.AI?.GENERATE_COVER
-          ? API_PATHS.AI.GENERATE_COVER
-          : `/api/ai/generate-cover`,
+        API_PATHS.AI.GENERATE_COVER,
         {
           title: book.title,
           subtitle: book.subtitle,
@@ -189,27 +186,23 @@ const EditorPage = () => {
         },
         { timeout: 120000 }
       );
-      // Expect res.data.coverImage or res.data.book.coverImage
-      const newCover =
-        res.data?.book?.coverImage || res.data?.coverImage || null;
+      const newCover = res.data?.coverImage || res.data?.book?.coverImage || null;
       if (newCover) {
         setBook((prev) => ({ ...prev, coverImage: newCover }));
-        setHasUnsavedChanges(true);
-        toast.success("AI Cover generated! 🎨");
+        await axiosInstance.put(API_PATHS.BOOKS.UPDATE(bookId), {
+          coverImage: newCover,
+        });
+        toast.success("AI Cover generated & saved! 🎨");
       } else {
-        toast.success("Cover generation initiated — refresh to see your new cover.");
+        toast.error("No cover image returned from server");
       }
     } catch (error) {
+      console.error("AI cover generation error:", error);
       const msg =
         error?.response?.data?.error ||
         error?.message ||
         "Failed to generate cover";
-      // If endpoint doesn't exist yet, show a friendly message
-      if (error?.response?.status === 404) {
-        toast.error("AI Cover endpoint not yet connected. Coming soon! 🚀");
-      } else {
-        toast.error(msg);
-      }
+      toast.error(msg);
     } finally {
       setGeneratingCover(false);
     }
