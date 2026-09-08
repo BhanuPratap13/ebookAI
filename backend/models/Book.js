@@ -75,4 +75,3 @@ bookSchema.index({ title: "text" }); // Enable text search on title
 const Book = mongoose.model("Book", bookSchema);
 
 module.exports = Book;
-module.exports=mongoose.model("Book",bookSchema);

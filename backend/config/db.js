@@ -1,6 +1,11 @@
 const mongoose = require("mongoose");
 const dns = require("dns");
-dns.setServers(["1.1.1.1","8.8.8.8"]);
+
+try {
+  dns.setServers(["1.1.1.1", "8.8.8.8"]);
+} catch (e) {
+  // Ignore DNS override errors in restricted environments
+}
 
 const connectDB = async () => {
   try {
