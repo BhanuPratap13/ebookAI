@@ -60,6 +60,14 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "eBookAI API is running" });
 });
 
+// Normalize duplicate slashes in request URL (e.g. //api/auth -> /api/auth)
+app.use((req, res, next) => {
+  if (req.url) {
+    req.url = req.url.replace(/\/{2,}/g, "/");
+  }
+  next();
+});
+
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/books", bookRoutes);
