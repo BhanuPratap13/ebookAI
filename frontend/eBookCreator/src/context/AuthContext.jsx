@@ -39,6 +39,13 @@ export function AuthProvider({ children }) {
       email,
       password,
     });
+    const { token, _id } = response.data;
+    if (token) {
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify({ _id, name, email }));
+      setIsAuthenticated(true);
+      setUser({ _id, name, email });
+    }
     return response.data;
   };
 
