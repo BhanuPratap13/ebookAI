@@ -4,7 +4,15 @@
   <strong>Turn your ideas into professionally written and formatted eBooks with AI.</strong>
 </p>
 
-[🚀 Live Demo](https://ebook-ai-sepia.vercel.app/) · [💻 Source Code](https://github.com/BhanuPratap13/ebookAI)
+<p align="center">
+  <a href="https://ebook-ai-sepia.vercel.app/">
+    🚀 <strong>Live Demo</strong>
+  </a>
+  &nbsp; · &nbsp;
+  <a href="https://github.com/BhanuPratap13/ebookAI">
+    💻 <strong>Source Code</strong>
+  </a>
+</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black">
